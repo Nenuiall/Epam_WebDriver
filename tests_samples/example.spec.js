@@ -26,7 +26,7 @@ const {Builder, By} = require('selenium-webdriver');
     const pasteName = await driver.findElement(By.id('postform-name'));
     await pasteName.sendKeys('helloweb');
 
-    // await driver.quit();
+    await driver.quit();
   } catch (error) {
     console.log(error);
   }
