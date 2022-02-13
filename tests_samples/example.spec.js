@@ -6,8 +6,7 @@ const {Builder, By} = require('selenium-webdriver');
     let driver = await new Builder().forBrowser('chrome').build();
 
     await driver.get('https://pastebin.com/');
-    console.log('Hello ' + await driver.getTitle() + '!');
-
+    
     driver.manage().setTimeouts({implicit: 5000});
     driver.manage().window().maximize();
 
