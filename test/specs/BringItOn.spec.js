@@ -46,11 +46,13 @@ describe('Pastebin test', async function() {
     let actualSyntax = await newPastePage.tagSyntax.getText();      
     assert.equal(actualSyntax, expectedSyntax, 'Syntax is wrong');     
   });
+
   it('page title should be "how to gain dominance among developers"', async function() {         
     let expectedTitle = pasteNameFormText;
     let actualTitle = await driver.getTitle();
     assert.equal(actualTitle, expectedTitle, 'Title is wrong');      
   });
+  
   it('code should be equal the entered', async function() {
     let expectedCod = pasteFormText;
     let actualCod = await newPastePage.textOfNewPaste.getText();
