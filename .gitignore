@@ -1,4 +1,4 @@
-/node_modules/
-/reports/
-/tests_samples/
-/app/
+reports/
+app/
+tests_samples/
+node_modules/
