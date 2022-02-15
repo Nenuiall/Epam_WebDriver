@@ -1,6 +1,5 @@
 const {Builder, By, until} = require('selenium-webdriver');
 driver = require('../test/specs/BringItOn.spec');
-const myWaits =  require('../helpers/waits');
 
 class HomePage {   
   get newPasteForm() {
@@ -10,52 +9,52 @@ class HomePage {
     return driver.findElement(By.id('postform-name'));
   }; 
   get pasteBtn() {
-    await myWaits.myWaitbyClN('btn -big',1000);    
+    return driver.findElement(By.className('btn -big'));       
   };
   get  syntaxHighlightingMenu() {
-    await myWaits.myWaitbyXp('(//span[@class="select2-selection select2-selection--single"])[1]',10000);
+    return driver.findElement(By.xpath('(//span[@class="select2-selection select2-selection--single"])[1]'));
   };
   get optionOfsyntaxHighlightingMenu() {
-    await myWaits.myWaitbyXp('(//li[contains( text(),"Bash")])[1]',10000);
+    return driver.findElement(By.xpath('(//li[contains( text(),"Bash")])[1]'));    
   };
   get pasteExpirationMenu() {
-    await myWaits.myWaitbyXp('(//span[@class="select2-selection select2-selection--single"])[2]',10000);
+    return driver.findElement(By.xpath('(//span[@class="select2-selection select2-selection--single"])[2]'));    
   };
   get optionOfpasteExpirationMenu() {
-    await myWaits.myWaitbyXp('//li[contains( text(),"10 Minutes")]',10000);    
+    return driver.findElement(By.xpath('//li[contains( text(),"10 Minutes")]'));       
   };
 
   async clickPasteBtn() {
     try {
-      await this.pasteBtn.click();    
+      await driver.wait(until.elementIsVisible(this.pasteBtn), 1000).click();          
     } catch(err) {
       console.log(err);
     };    
   };   
   async clickSyntaxHighlightingMenu() {
     try {
-      await this.syntaxHighlightingMenu.click();      
+      await driver.wait(until.elementIsVisible(this.syntaxHighlightingMenu), 1000).click();
     } catch(err) {
       console.log(err);
     };   
   };
   async clickOptionOfsyntaxHighlightingMenu() {
     try {
-      await this.optionOfsyntaxHighlightingMenu.click();
+      await driver.wait(until.elementIsVisible(this.optionOfsyntaxHighlightingMenu), 1000).click();
     } catch(err) {
       console.log(err);
     };     
   };
   async clickPasteExpirationMenu() {
     try {
-      await this.pasteExpirationMenu.click();
+      await driver.wait(until.elementIsVisible(this.pasteExpirationMenu), 1000).click();
     } catch(err) {
       console.log(err);
     };    
 }; 
   async clickOptionOfpasteExpirationMenu() { 
     try {
-      await this.optionOfpasteExpirationMenu.click();
+      await driver.wait(until.elementIsVisible(this.optionOfpasteExpirationMenu), 1000).click();
     } catch(err) {
       console.log(err);
     };    

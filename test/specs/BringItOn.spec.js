@@ -14,7 +14,7 @@ git push origin master --force
 * Синтаксис подвечен для bash
 * Проверить что код соответствует введенному в пункте 2*/
 
-const HomePage =  require('../../pages/home.page');
+const HomePage =  require('../../pages/pasteHome.page');
 const newPastePage = require('../../pages/newPaste.page')
 const {Builder, until} = require('selenium-webdriver');
 const {before, after} = require('mocha');
@@ -43,7 +43,7 @@ describe('Pastebin test', async function() {
     await HomePage.clickPasteBtn(); 
 
     let expectedSyntax = 'bash';
-    let actualSyntax = await newPastePage.tagSyntax.getText();      
+    let actualSyntax = await driver.wait(until.elementIsVisible(newPastePage.tagSyntax), 1000).getText();      
     assert.equal(actualSyntax, expectedSyntax, 'Syntax is wrong');     
   });
 

@@ -2,10 +2,10 @@ const {Builder, By, until} = require('selenium-webdriver');
 driver = require('../test/specs/BringItOn.spec');
 
 class myWaits {
-    async myWaitbyClN(myClass, time) {
+    async waitbyClN(myClass, time) {
         await driver.wait(until.elementLocated(By.className(myClass)),time);
       };
-    async myWaitbyXp(myXpath, time) {
+    async waitbyXp(myXpath, time) {
         await driver.wait(until.elementLocated(By.xpath(myXpath)),time);
       };
 };

@@ -3,7 +3,7 @@ driver = require('../test/specs/BringItOn.spec');
 
 class newPastePage {
   get tagSyntax() {
-    return driver.wait(until.elementLocated(By.xpath('(//a[@class="btn -small h_800"])[1]')),10000);
+    return driver.findElement(By.xpath('(//a[@class="btn -small h_800"])[1]'));   
   }; 
   get textOfNewPaste() {
     return driver.findElement(By.xpath('//ol[@class="text"]'));
