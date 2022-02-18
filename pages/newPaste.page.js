@@ -10,6 +10,5 @@ class newPastePage {
   };  
 };
 
-
 module.exports = new newPastePage();
 
