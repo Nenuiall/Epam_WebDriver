@@ -32,15 +32,13 @@ describe('Pastebin test', async function() {
     // await driver.quit();
   });  
 
-  it('syntax should be "bash"', async function() {
-    await driver.get('https://pastebin.com/');    
+  it('syntax should be "bash"', async function() {    
+    await HomePage.openPastePage();    
     await HomePage.sendNewPasteFormText(pasteFormText);
     await HomePage.sendPasteNameFormText(pasteNameFormText);
-    await HomePage.clickSyntaxHighlightingMenu();
-    await HomePage.clickOptionOfsyntaxHighlightingMenu();       
-    await HomePage.clickPasteExpirationMenu();
-    await HomePage.clickOptionOfpasteExpirationMenu(); 
-    await HomePage.clickPasteBtn(); 
+    await HomePage.selectSyntaxHighlighting();
+    await HomePage.selectPasteExpiration(); 
+    await HomePage.clickPasteBtn();
 
     let expectedSyntax = 'bash';
     let actualSyntax = await driver.wait(until.elementIsVisible(newPastePage.tagSyntax), 1000).getText();      

@@ -1,5 +1,5 @@
 const {Builder, By, until} = require('selenium-webdriver');
-driver = require('../tests_samples/BringItOn.spec');
+driver = require('../test/specs/BringItOn.spec');
 
 class HomePage {   
   get newPasteForm() {
@@ -11,11 +11,11 @@ class HomePage {
   get pasteBtn() {
     return driver.findElement(By.className('btn -big'));       
   };
-  get  syntaxHighlightingMenu() {
+  get syntaxHighlightingMenu() {
     return driver.findElement(By.xpath('(//span[@class="select2-selection select2-selection--single"])[1]'));
   };
-  get optionOfsyntaxHighlightingMenu() {
-    return driver.findElement(By.xpath('(//li[contains( text(),"Bash")])[1]'));    
+  get syntaxHighlightingField() {
+    return driver.findElement(By.xpath('//input[@class="select2-search__field"]'));    
   };
   get pasteExpirationMenu() {
     return driver.findElement(By.xpath('(//span[@class="select2-selection select2-selection--single"])[2]'));    
@@ -24,24 +24,24 @@ class HomePage {
     return driver.findElement(By.xpath('//li[contains( text(),"10 Minutes")]'));       
   };
 
+  async openPastePage() {
+    await driver.get('https://pastebin.com/'); 
+  }; 
   async clickPasteBtn() {
     await driver.wait(until.elementIsVisible(this.pasteBtn), 1000).click(); 
   };   
-  async clickSyntaxHighlightingMenu() {
-    await driver.wait(until.elementIsVisible(this.syntaxHighlightingMenu), 1000).click();       
+  async selectSyntaxHighlighting() {
+    await driver.wait(until.elementIsVisible(this.syntaxHighlightingMenu), 5000).click();
+    let syntaxField = await driver.wait(until.elementLocated(this.syntaxHighlightingField), 5000);
+    await syntaxField.sendKeys('Bash\n');       
   };
-  async clickOptionOfsyntaxHighlightingMenu() {
-    await driver.wait(until.elementIsVisible(this.optionOfsyntaxHighlightingMenu), 1000).click();
-  };
-  async clickPasteExpirationMenu() {
-    await driver.wait(until.elementIsVisible(this.pasteExpirationMenu), 1000).click();
-}; 
-  async clickOptionOfpasteExpirationMenu() { 
-    await driver.wait(until.elementIsVisible(this.optionOfpasteExpirationMenu), 1000).click();
-  };   
+  async selectPasteExpiration() {
+    await driver.wait(until.elementIsVisible(this.pasteExpirationMenu), 5000).click();
+    await driver.wait(until.elementIsVisible(this.optionOfpasteExpirationMenu), 5000).click();
+  };  
   async sendNewPasteFormText(text) {
     await this.newPasteForm.sendKeys(text);
-};
+  };
   async sendPasteNameFormText(title) {
     await this.pasteNameForm.sendKeys(title);
   };  
