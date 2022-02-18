@@ -1,5 +1,5 @@
 const {Builder, By, until} = require('selenium-webdriver');
-driver = require('../test/specs/BringItOn.spec');
+driver = require('../tests_samples/BringItOn.spec');
 
 class HomePage {   
   get newPasteForm() {
@@ -25,39 +25,19 @@ class HomePage {
   };
 
   async clickPasteBtn() {
-    try {
-      await driver.wait(until.elementIsVisible(this.pasteBtn), 1000).click();          
-    } catch(err) {
-      console.log(err);
-    };    
+    await driver.wait(until.elementIsVisible(this.pasteBtn), 1000).click(); 
   };   
   async clickSyntaxHighlightingMenu() {
-    try {
-      await driver.wait(until.elementIsVisible(this.syntaxHighlightingMenu), 1000).click();
-    } catch(err) {
-      console.log(err);
-    };   
+    await driver.wait(until.elementIsVisible(this.syntaxHighlightingMenu), 1000).click();       
   };
   async clickOptionOfsyntaxHighlightingMenu() {
-    try {
-      await driver.wait(until.elementIsVisible(this.optionOfsyntaxHighlightingMenu), 1000).click();
-    } catch(err) {
-      console.log(err);
-    };     
+    await driver.wait(until.elementIsVisible(this.optionOfsyntaxHighlightingMenu), 1000).click();
   };
   async clickPasteExpirationMenu() {
-    try {
-      await driver.wait(until.elementIsVisible(this.pasteExpirationMenu), 1000).click();
-    } catch(err) {
-      console.log(err);
-    };    
+    await driver.wait(until.elementIsVisible(this.pasteExpirationMenu), 1000).click();
 }; 
   async clickOptionOfpasteExpirationMenu() { 
-    try {
-      await driver.wait(until.elementIsVisible(this.optionOfpasteExpirationMenu), 1000).click();
-    } catch(err) {
-      console.log(err);
-    };    
+    await driver.wait(until.elementIsVisible(this.optionOfpasteExpirationMenu), 1000).click();
   };   
   async sendNewPasteFormText(text) {
     await this.newPasteForm.sendKeys(text);

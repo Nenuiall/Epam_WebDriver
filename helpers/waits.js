@@ -1,5 +1,5 @@
 const {Builder, By, until} = require('selenium-webdriver');
-driver = require('../test/specs/BringItOn.spec');
+driver = require('../tests_samples/BringItOn.spec');
 
 class myWaits {
     async waitbyClN(myClass, time) {
