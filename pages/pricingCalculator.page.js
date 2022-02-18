@@ -50,7 +50,7 @@ class PricingCalculatorPage {
     get commitedUsage() {
         return driver.findElement(By.xpath('(//md-option[@ng-value="1"][@value="1"])[2]'));
     };
-    get addToEstimateBtn() {
+    get estimateBtn() {
         return driver.findElement(By.xpath('//button[@aria-label="Add to Estimate"]'));
     };
     get vmClass() {
@@ -112,11 +112,12 @@ class PricingCalculatorPage {
         await driver.wait(until.elementIsVisible(this.commitedUsageField), 2000).click();  
         await driver.wait(until.elementIsVisible(this.commitedUsage), 2000).click();
     };
-    async clickAddToEstimateBtn() {
-        await this.addToEstimateBtn.click();        
+    async clickEstimateBtn() {
+        await this.estimateBtn.click();        
     }; 
     async fillCalculatorForm() {
-        try {            
+        try {
+            await this.openPricingCalculatorPage();            
             await this.sendTextToInstancesField('4');
             await this.selectSeriesOfMachine();
             await this.selectTypeOfMachine();
@@ -126,7 +127,7 @@ class PricingCalculatorPage {
             await this.selectLocalSsd();
             await this.selectLocationOfDatacenter();
             await this.selectCommitedUsage();
-            await this.clickAddToEstimateBtn();
+            await this.clickEstimateBtn();
         } catch(err) {
             console.log(err);
         };        
