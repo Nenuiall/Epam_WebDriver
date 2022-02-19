@@ -2,6 +2,12 @@ const {Builder, By, until} = require('selenium-webdriver');
 driver = require('../test/specs/HurtMePlenty.spec');
 
 class PricingCalculatorPage {
+    get frame() {          
+        return driver.findElement(By.xpath('//iframe[@allow="clipboard-write https://cloud-dot-devsite-v2-prod.appspot.com"]'));      
+    }; 
+    get subFrame() {          
+        return driver.findElement(By.xpath('//iframe[@id="myFrame"]'));                               
+    }; 
     get instancesField() {          
         return driver.findElement(By.xpath('//md-input-container/child::input[@ng-model="listingCtrl.computeServer.quantity"]'));                               
     };  
@@ -76,9 +82,9 @@ class PricingCalculatorPage {
     async openPricingCalculatorPage() {
         await driver.get('https://cloud.google.com/products/calculator');
     };   
-    async sendTextToInstancesField(text) {       
-        await driver.switchTo().frame(driver.findElement(By.xpath('//iframe[@allow="clipboard-write https://cloud-dot-devsite-v2-prod.appspot.com"]'))); 
-        await driver.switchTo().frame(driver.findElement(By.xpath('//iframe[@id="myFrame"]')));        
+    async sendTextToInstancesField(text) {
+        await driver.switchTo().frame(this.frame); 
+        await driver.switchTo().frame(this.subFrame);        
         this.instancesField.sendKeys(text);
     };
     async selectSeriesOfMachine() {  
