@@ -161,3 +161,4 @@ class PricingCalculatorPage {
 };
 
 module.exports = new PricingCalculatorPage();
+
