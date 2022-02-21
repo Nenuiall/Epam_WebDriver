@@ -11,18 +11,10 @@ class YopmailPage {
   get newAdressField() {
       return driver.findElement(By.xpath('//div[@id="egen"]'));        
   };
-
-  async openYopmailPage() {
-      await driver.window.open('https://yopmail.com/en/');
-  }; 
+   
   async getRandomEmailAddress() {
       await this.randomEmailAddressBtn.click();
-  }; 
-  async copyAddressToClipboard() {
-      let newAdress = await driver.wait(until.elementIsVisible(this.newAdressBtn), 3000).click();
-      await newAdress.click();
-  };   
+  };    
 };
-
 
 module.exports = new YopmailPage();
