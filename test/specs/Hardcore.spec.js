@@ -8,7 +8,7 @@ const chai = require('chai');
 const {expect, assert} = require('chai');
 
 
-describe('Google cloud test', async function() {  
+describe('Google calculator test', async function() {  
   before(async function() {
     driver = new Builder().forBrowser('chrome').build();        
   });
