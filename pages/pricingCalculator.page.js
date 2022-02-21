@@ -1,7 +1,13 @@
 const {Builder, By, until} = require('selenium-webdriver');
-driver = require('../test/specs/HurtMePlenty.spec');
+driver = require('../test/specs/Hardcore.spec');
 
 class PricingCalculatorPage {
+    get frame() {          
+        return driver.findElement(By.xpath('//iframe[@allow="clipboard-write https://cloud-dot-devsite-v2-prod.appspot.com"]'));      
+    }; 
+    get subFrame() {          
+        return driver.findElement(By.xpath('//iframe[@id="myFrame"]'));                               
+    }; 
     get instancesField() {          
         return driver.findElement(By.xpath('//md-input-container/child::input[@ng-model="listingCtrl.computeServer.quantity"]'));                               
     };  
@@ -71,14 +77,23 @@ class PricingCalculatorPage {
     get estimatedCostInfo() {
         return driver.findElement(By.xpath('(//b[@class="ng-binding"])[1]'));
     };
+    get emailEstimateBtn() {
+        return driver.findElement(By.xpath('//button[@id="email_quote"]'));
+    };
+    get emailEstimateField() {
+        return driver.findElement(By.xpath('//input[@ng-model="emailQuote.user.email"]'));
+    };
+    get emailSendBtn() {
+        return driver.findElement(By.xpath('//button[@aria-label="Send Email"]'));
+    };
 
 
     async openPricingCalculatorPage() {
         await driver.get('https://cloud.google.com/products/calculator');
     };   
     async sendTextToInstancesField(text) {       
-        await driver.switchTo().frame(driver.findElement(By.xpath('//iframe[@allow="clipboard-write https://cloud-dot-devsite-v2-prod.appspot.com"]'))); 
-        await driver.switchTo().frame(driver.findElement(By.xpath('//iframe[@id="myFrame"]')));        
+        await driver.switchTo().frame(this.frame); 
+        await driver.switchTo().frame(this.subFrame);        
         this.instancesField.sendKeys(text);
     };
     async selectSeriesOfMachine() {  
@@ -114,10 +129,21 @@ class PricingCalculatorPage {
     };
     async clickEstimateBtn() {
         await this.estimateBtn.click();        
+    };
+    async clickEmailEstimateBtn() {
+        await driver.switchTo().frame(this.frame); 
+        await driver.switchTo().frame(this.subFrame); 
+        await this.emailEstimateBtn.click();                
     }; 
+    async sendEmailToEmailEstimateField(adress) {
+        await driver.wait(until.elementIsVisible(this.emailEstimateField), 3000).click(); 
+        await this.emailEstimateField.sendKeys(adress);               
+    };
+    async clickEmailSendBtn() {
+        await this.emailSendBtn.click();        
+    };
     async fillCalculatorForm() {
-        try {
-            await this.openPricingCalculatorPage();            
+        try {                        
             await this.sendTextToInstancesField('4');
             await this.selectSeriesOfMachine();
             await this.selectTypeOfMachine();

@@ -1,5 +1,5 @@
 const { Builder, By, until } = require('selenium-webdriver');
-driver = require('../test/specs/HurtMePlenty.spec');
+driver = require('../test/specs/Hardcore.spec');
 
 class GoogleCloudPage {
   get searchBtn() {
